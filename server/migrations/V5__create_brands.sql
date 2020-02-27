@@ -1,7 +1,9 @@
 create table BRANDS (
     id uuid PRIMARY KEY NOT NULL DEFAULT uuid_generate_v1(),
     slug varchar(100) unique not null,
-    name varchar(100) not null
+    name varchar(100) not null,
+    created_at date DEFAULT now(),
+    updated_at date DEFAULT now()
 );
 
 Insert into BRANDS (name, slug) values

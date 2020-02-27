@@ -8,6 +8,8 @@ create table CLOTHES (
     title varchar(255),
     color varchar(255),
     description varchar(2000),
+    created_at date DEFAULT now(),
+    updated_at date DEFAULT now(),
     FOREIGN KEY (created_by) REFERENCES USERS (id),
     FOREIGN KEY (size_id) REFERENCES SIZES (id),
     FOREIGN KEY (brand_id) REFERENCES BRANDS (id),

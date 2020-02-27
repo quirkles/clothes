@@ -11,7 +11,6 @@ User.init({
   id: {
     type: UUID,
     primaryKey: true,
-    allowNull: false,
   },
   email: {
     type: STRING,
@@ -28,6 +27,8 @@ User.init({
 }, {
   sequelize,
   modelName: 'user',
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
 });
 
 export default User;

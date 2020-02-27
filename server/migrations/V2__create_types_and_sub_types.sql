@@ -1,7 +1,9 @@
 create table CLOTHES_CATEGORIES (
     id uuid PRIMARY KEY NOT NULL DEFAULT uuid_generate_v1(),
     slug varchar(100) unique not null,
-    name varchar(100) not null
+    name varchar(100) not null,
+    created_at date DEFAULT now(),
+    updated_at date DEFAULT now()
 );
 
 CREATE INDEX ON CLOTHES_CATEGORIES (id);
@@ -20,6 +22,8 @@ create table CLOTHES_SUBCATEGORIES (
     clothes_category_id uuid,
     slug varchar(100) not null,
     name varchar(100) not null,
+    created_at date DEFAULT now(),
+    updated_at date DEFAULT now(),
     UNIQUE (slug, clothes_category_id),
     FOREIGN KEY (clothes_category_id) REFERENCES CLOTHES_CATEGORIES (id)
 );

@@ -2,6 +2,8 @@ create table SIZES (
     id uuid PRIMARY KEY NOT NULL DEFAULT uuid_generate_v1(),
     slug varchar(100) not null,
     name varchar(100) not null,
+    created_at date DEFAULT now(),
+    updated_at date DEFAULT now(),
     cc_id uuid,
     UNIQUE (slug, cc_id),
     FOREIGN KEY (cc_id) REFERENCES CLOTHES_CATEGORIES (id)

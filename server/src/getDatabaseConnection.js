@@ -7,8 +7,7 @@ export default (connectionString) => {
   if (sequelize) {
     return sequelize;
   }
-  console.log('!!!')
-  sequelize = new Sequelize(connectionString);
+  sequelize = new Sequelize(connectionString, { omitNull: true });
   sequelizeInstances[connectionString] = sequelize;
   return sequelize;
 };
