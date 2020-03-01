@@ -18,9 +18,3 @@ create table CLOTHES (
 );
 CREATE INDEX ON CLOTHES (lower(title));
 CREATE INDEX ON CLOTHES (lower(description));
-
-insert into CONDITIONS (slug, name) values
-('new', 'New/Never Worn'),
-('gently-used', 'Gently Used'),
-('used', 'Used'),
-('worn', 'Very Worn');
