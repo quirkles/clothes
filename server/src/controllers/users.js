@@ -8,6 +8,7 @@ import { JWT_SECRET } from '../secrets';
 const userToToken = pick(['username', 'id']);
 
 export const createUser = (req, res) => {
+  console.log('!!##$$') //eslint-disable-line
   const userData = req.body;
   userData.password = encrypt(userData.password);
   userModel.create(userData)

@@ -6,10 +6,10 @@ import {
 } from '../controllers';
 
 export default (app) => {
-  app.post('/user', createUser);
+  app.post('/users', createUser);
   app.post('/login', attemptLogin);
   app.get(
-    '/user',
+    '/users',
     passport.authenticate('jwt', { session: false }),
     (req, res) => res.send(req.user),
   );
