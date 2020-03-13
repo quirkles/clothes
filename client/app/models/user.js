@@ -12,13 +12,13 @@ export default class user extends Model {
   get signupErrors() {
     return {
       username: [
-        ['minlength_6', this.username.length < 5],
+        ['minlength_6', this.username.length < 6],
       ],
       email: [
         ['isEmail', !emailRegex.test(this.email)],
       ],
       password: [
-        ['minlength_6', this.password.length < 5],
+        ['minlength_6', this.password.length < 6],
       ],
       confirmPassword: [
         ['matches_password', this.confirmPassword !== this.password]
@@ -29,7 +29,12 @@ export default class user extends Model {
   get canAttemptSignup() {
       return ([]
       .concat(Object.values(this.signupErrors))
-      .filter((field, isInvalid) => isInvalid)
-      .length) === 0
+      .flat()
+      .filter(([, isInvalid]) => isInvalid)
+      .length === 0)
+  }
+
+  get hasSignupErrors() {
+      return !this.canAttemptSignup
   }
 }

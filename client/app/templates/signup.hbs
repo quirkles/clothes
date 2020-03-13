@@ -35,7 +35,10 @@
           </div>
           <button type="button" {{on "click" this.submit}}>Sign Up</button>
         </form>
-        <ErrorBox @errors={{@model.signupErrors}} />
+        {{#if @model.hasSignupErrors}}
+          <h1>{{@model.hasSignupErrors}}</h1>
+          <ErrorBox @errors={{@model.signupErrors}} />
+        {{/if}}
         <div class="redirect"><span>Already have an account? <LinkTo @route="login">login</LinkTo></span></div>
       </div>
     </div>
