@@ -1,0 +1,43 @@
+<div id="signup-page">
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+      <div class="medium-4 medium-offset-4 cell">
+        <h2>
+          <span>Create an Account</span>
+        </h2>
+        <form>
+          <div>
+            <div class="medium-12 cell">
+              <label>
+                <span>Username</span>
+                <label for="firstname">First Name</label>
+                <Input @type="text" @value={{@model.username}} name="username" placeholder="username" autocomplete="username" />
+              </label>
+            </div>
+            <div class="medium-12 cell">
+              <label>
+                <span>Email</span>
+                <Input @type="text" @value={{@model.email}} name="email" placeholder="user@email.com" autocomplete="email" />
+              </label>
+            </div>
+            <div class="medium-12 cell">
+              <label>
+                <span>Password</span>
+                <Input @type="password" @value={{@model.password}} name="password" placeholder="xxxxxx" autocomplete="new-password" />
+              </label>
+            </div>
+            <div class="medium-12 cell">
+              <label>
+                <span>Confirm Password</span>
+                <Input @type="password" @value={{@model.confirmPassword}} name="confirmPassword" placeholder="xxxxxx" autocomplete="confirm-password" />
+              </label>
+            </div>
+          </div>
+          <button type="button" {{on "click" this.submit}}>Sign Up</button>
+        </form>
+        <ErrorBox @errors={{@model.signupErrors}} />
+        <div class="redirect"><span>Already have an account? <LinkTo @route="login">login</LinkTo></span></div>
+      </div>
+    </div>
+  </div>
+</div>

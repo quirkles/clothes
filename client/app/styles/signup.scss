@@ -1,0 +1,13 @@
+#signup-page {
+  form {
+    margin: 1rem 0;
+  }
+  div.redirect, h2, label {
+    > span {
+      padding: 0.5rem;
+      color: #c2c2c2;
+      background: rgba(0, 0, 0, 0.8)
+    }
+  }
+  background: url(../assets/img/bg-white.jpg);
+}
