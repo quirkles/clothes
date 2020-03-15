@@ -14,7 +14,9 @@ const app = express();
 
 const passport = initPassport(app);
 
-app.use(express.json());
+app.use(express.json({
+  type: ['application/json', 'application/vnd.api+json'],
+}));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200'); // update to match the domain you will make the request from

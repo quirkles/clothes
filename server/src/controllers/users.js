@@ -1,15 +1,14 @@
-import { pick, propOr } from 'ramda';
+import { omit, propOr } from 'ramda';
 import { sign } from 'jsonwebtoken';
 
 import { user as userModel } from '../models';
 import { encrypt } from '../encrypt';
 import { JWT_SECRET } from '../secrets';
 
-const userToToken = pick(['username', 'id']);
+const userToToken = omit(['password']);
 
 export const createUser = (req, res) => {
-  console.log('!!##$$') //eslint-disable-line
-  const userData = req.body;
+  const userData = req.body.data.attributes;
   userData.password = encrypt(userData.password);
   userModel.create(userData)
     .then((createdUser) => {
@@ -17,8 +16,12 @@ export const createUser = (req, res) => {
       const { username: user, id } = response;
       const token = sign({ user, sub: id }, JWT_SECRET);
       res.json({
-        success: true,
-        token,
+        data: {
+          id: response.id,
+          type: 'user',
+          attributes: response,
+        },
+        meta: { success: true, token },
       });
     })
     .catch((err) => {
