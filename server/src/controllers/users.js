@@ -5,7 +5,7 @@ import { user as userModel } from '../models';
 import { encrypt } from '../encrypt';
 import { JWT_SECRET } from '../secrets';
 
-const userToToken = omit(['password']);
+const userToToken = omit(['password', 'confirm-password']);
 
 export const createUser = (req, res) => {
   const userData = req.body.data.attributes;

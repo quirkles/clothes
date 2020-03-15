@@ -1,12 +1,6 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import {tracked} from "@glimmer/tracking";
-// import {tracked} from "@glimmer/tracking";
-
-const persistToken = resp => {
-  console.log(resp) //eslint-disable-line
-  return resp
-};
 
 export default class SignupController extends Controller {
   @tracked hasSubmitted = false;
@@ -19,8 +13,11 @@ export default class SignupController extends Controller {
   submit(){
     this.hasSubmitted = true;
     if(this.model.canAttemptSignup) {
+      const self = this;
       this.model.save()
-        .then(persistToken)
+        .then(() => {
+          self.transitionToRoute('home')
+        })
         .catch(err => {
           console.error(err)
         })
