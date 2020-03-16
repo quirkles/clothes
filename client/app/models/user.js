@@ -26,6 +26,17 @@ export default class user extends Model {
     }
   }
 
+  get loginErrors() {
+    return {
+      username: [
+        ['minlength_6', this.username.length < 6],
+      ],
+      password: [
+        ['minlength_6', this.password.length < 6],
+      ],
+    }
+  }
+
   get canAttemptSignup() {
       return ([]
       .concat(Object.values(this.signupErrors))
@@ -34,7 +45,19 @@ export default class user extends Model {
       .length === 0)
   }
 
+  get canAttemptLogin() {
+      return ([]
+      .concat(Object.values(this.loginErrors))
+      .flat()
+      .filter(([, isInvalid]) => isInvalid)
+      .length === 0)
+  }
+
   get hasSignupErrors() {
       return !this.canAttemptSignup
+  }
+
+  get hasloginErrors() {
+    return !this.canAttemptSignup
   }
 }
