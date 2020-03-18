@@ -21,8 +21,6 @@ export default class SignupController extends Controller {
         .catch(err => {
           console.error(err)
         })
-    } else {
-      console.log(this.model.signupErrors)
     }
   }
 }

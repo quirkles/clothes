@@ -1,7 +1,7 @@
 <div id="signup-page">
   <div class="grid-container">
     <div class="grid-x grid-padding-x">
-      <div class="medium-4 medium-offset-4 cell">
+      <div class="medium-6 medium-offset-3 cell">
         <h2>
           <span>Create an Account</span>
         </h2>
@@ -36,7 +36,6 @@
           <button type="button" {{on "click" this.submit}}>Sign Up</button>
         </form>
         {{#if this.shouldShowErrorBox}}
-          <h1>{{@model.hasSignupErrors}}</h1>
           <ErrorBox @errors={{@model.signupErrors}} />
         {{/if}}
         <div class="redirect"><span>Already have an account? <LinkTo @route="login">login</LinkTo></span></div>
