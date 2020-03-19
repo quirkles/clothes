@@ -14,8 +14,12 @@ export default class SignupController extends Controller {
     this.hasSubmitted = true;
     if(this.model.canAttemptSignup) {
       const self = this;
-      this.model.save()
+      this.store
+        .createRecord('user', this.model.serialize().data.attributes)
+        .save()
         .then(() => {
+          self.hasSubmitted = false;
+          self.model.unloadRecord();
           self.transitionToRoute('home')
         })
         .catch(err => {
