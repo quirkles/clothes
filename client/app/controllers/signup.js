@@ -17,7 +17,7 @@ export default class SignupController extends Controller {
       this.store
         .createRecord('user', this.model.serialize().data.attributes)
         .save()
-        .then(() => {
+        .then((response) => {
           self.hasSubmitted = false;
           self.model.unloadRecord();
           self.transitionToRoute('home')

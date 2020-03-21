@@ -21,7 +21,7 @@ export const createUser = (req, res) => {
           type: 'user',
           attributes: response,
         },
-        meta: { success: true, token },
+        meta: { token },
       });
     })
     .catch((err) => {
@@ -32,8 +32,8 @@ export const createUser = (req, res) => {
 
 
 export const attemptLogin = (req, res) => {
-  const userData = propOr({}, 'body', req);
-  const { username, password = '' } = userData;
+  const postedCreds = req.body.data.attributes;
+  const { username, password = '' } = postedCreds;
   const encryptedPassword = encrypt(password);
   userModel.findOne({
     where: {
@@ -42,9 +42,10 @@ export const attemptLogin = (req, res) => {
     },
   })
     .then((foundUserModel) => {
-      const { username: user, id } = userToToken(foundUserModel.toJSON());
+      const userData = userToToken(foundUserModel.toJSON());
+      const { username: user, id } = userData;
       const token = sign({ user, sub: id }, JWT_SECRET);
-      return res.json({ success: true, token });
+      return res.json({ meta: { token }, data: userData });
     })
     .catch((err) => {
       console.error(err);
